@@ -12,7 +12,7 @@ export default function App() {
 				<Nav />
 				<Switch>
 					<Route exact path="/" component={SearchBooks} />
-					<Route exact path="/books" component={SearchBooks} />
+					<Route exact path="/books" component={SavedBooks} />
 					<Route exact path="/books/:id" component={SavedBooks} />
 					<Route component={NoMatch} />
 				</Switch>

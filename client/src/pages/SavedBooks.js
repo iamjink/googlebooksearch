@@ -2,32 +2,70 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Col, Row, Container } from '../components/Grid';
 import Jumbotron from '../components/Jumbotron';
-import API from '../utils/API';
+import { BookList, BookListItem } from '../components/List';
+import EmptyList from '../components/EmptyList';
+import RemoveBtn from '../components/RemoveButton';
+import { toast } from 'react-toastify';
+import axios from 'axios';
 
 class SavedBooks extends Component {
 	state = {
-		book: {}
+		savedBooks: [],
+		initialized: true
 	};
 
 	componentDidMount() {
-		API.getBook(this.props.match.params.id)
-			.then((res) => this.setState({ book: res.data }))
-			.catch((err) => console.log(err));
+		this.getBooks();
 	}
 
+	getBooks = () => {
+		axios
+			.get('/api/books')
+			.then((res) => {
+				this.setState({ savedBooks: res.data });
+			})
+			.catch((err) => console.log(err));
+	};
+
 	deleteBook = (id) => {
-		API.deleteBook(id).then((res) => this.loadBooks()).catch((err) => console.log(err));
+		axios
+			.delete(`/api/books/${id}`)
+			.then(() => {
+				toast.error('Book deleted');
+				this.getBooks();
+			})
+			.catch((err) => console.log(err));
 	};
 
 	render() {
 		return (
 			<Container fluid>
 				<Row>
-					<Col size="md-10 md-offset-1">
-						<article>
-							<h1>Description</h1>
-							<p>{this.state.book.description}</p>
-						</article>
+					<Col size="md-12">
+						<Jumbotron>
+							<h1>Saved Books</h1>
+						</Jumbotron>
+						{this.state.savedBooks.length > 0 ? (
+							<BookList>
+								{this.state.savedBooks.map((book) => {
+									return (
+										<div>
+											<BookListItem
+												key={book._id}
+												authors={book.authors}
+												title={book.title}
+												synopsis={book.synopsis}
+												link={book.link}
+												thumbnail={book.thumbnail}
+											/>
+											<RemoveBtn onClick={() => this.deleteBook(book._id)} />
+										</div>
+									);
+								})}
+							</BookList>
+						) : (
+							<EmptyList />
+						)}
 					</Col>
 				</Row>
 				<Row>

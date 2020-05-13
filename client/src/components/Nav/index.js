@@ -6,6 +6,11 @@ export default function Nav() {
 			<a className="navbar-brand" href="/">
 				Google Books Search
 			</a>
+			<ul className="navbar-nav">
+				<li className="nav-item">
+					<a className="nav-link navbar-brand" id="savedLink" href="/bookshelf">Saved Books</a>
+				</li>
+			</ul>
 		</nav>
 	);
 }
