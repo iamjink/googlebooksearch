@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import Button from "../Button"
+import Button from '../Button';
 
 class AddBtn extends React.Component {
 	postDB = (book) => {
@@ -12,17 +12,23 @@ class AddBtn extends React.Component {
 			thumbnail: book.thumbnail,
 			link: book.link
 		};
-
 		axios
 			.post('/api/books', dbBook)
-			.then(() => toast.success(`${book.title} was added to your bookshelf!`))
+			.then(() => toast.success(`You added ${book.title} to your bookshelf`))
 			.catch((err) => console.log(err));
 	};
 
 	render() {
 		return (
 			<div>
-				<Button type="primary" onClick={() => {this.postDB(this.props)}}>Save</Button>
+				<Button
+					type="primary"
+					onClick={() => {
+						this.postDB(this.props);
+					}}
+				>
+					Save
+				</Button>
 			</div>
 		);
 	}

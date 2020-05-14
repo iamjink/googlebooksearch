@@ -4,7 +4,7 @@ import Thumbnail from '../Thumbnail';
 import { Container, Row, Col } from '../Grid';
 
 export function BookList({ children }) {
-	return <ul classNAme="List-group">{children}</ul>;
+	return <ul className="List-group">{children}</ul>;
 }
 
 export class BookListItem extends React.Component {
@@ -25,7 +25,7 @@ export class BookListItem extends React.Component {
 								</span>
 							</h3>
 							<p>{this.props.synopsis}</p>
-							<a target="_blank" href={this.props.link} rel=""> Go to Book</a>
+							<a target="_blank" href={this.props.link} rel="noopener noreferrer"> Go to Book</a>
 						</Col>
 					</Row>
 				</Container>

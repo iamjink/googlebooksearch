@@ -8,7 +8,7 @@ import RemoveBtn from '../components/RemoveButton';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
-class SavedBooks extends Component {
+class Saved extends Component {
 	state = {
 		savedBooks: [],
 		initialized: true
@@ -78,4 +78,4 @@ class SavedBooks extends Component {
 	}
 }
 
-export default SavedBooks;
+export default Saved;

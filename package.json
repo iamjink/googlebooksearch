@@ -1,7 +1,7 @@
 {
   "name": "mern",
   "version": "1.0.0",
-  "description": "",
+  "description": "react based google book search",
   "main": "server.js",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
@@ -20,10 +20,17 @@
     "nodemon": "^1.18.7"
   },
   "dependencies": {
-    "axios": "^0.19.2",
-    "express": "^4.17.1",
+    "axios": "^0.18.0",
+    "classnames": "^2.2.6",
+    "cors": "^2.8.5",
+    "dotenv": "^7.0.0",
+    "express": "^4.16.3",
     "if-env": "^1.0.4",
-    "mongoose": "^5.9.13",
-    "react-toastify": "^6.0.2"
+    "mongoose": "^5.3.16",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-router-dom": "^5.0.0",
+    "react-scripts": "^2.1.8",
+    "react-toastify": "^5.0.1"
   }
 }
